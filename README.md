@@ -14,7 +14,7 @@ SPARROW keeps TURTLEDOVE objectives, i.e:
 
 While adding the following ones:
 
-* Advertisers can retain campaign control and performance in so far as this does not infringe user privacy.
+* Advertisers can retain campaign *control and performance* in so far as this does not infringe user privacy.
 * All advertising use cases are covered by the proposition, not only re-marketing.
 * Appropriate control on ad safety, brand safety and transparency in billing is provided to both advertisers and publishers.
 * User experience while browsing the web is preserved.

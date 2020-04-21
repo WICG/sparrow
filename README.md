@@ -94,6 +94,8 @@ The ad server notifies the Gatekeeper. The Gatekeeper generates a web bundle wit
 
 The ad network sends back the web bundle to the browser, which renders the ad in an opaque iframe.
 
+![SPARROW sequence diagram](https://user-images.githubusercontent.com/64090118/79886212-b29d4200-83f8-11ea-8421-a4ca329d54cf.png)
+
 ## AB testing
 
 In order to provide advertisers with AB testing capabilities, we advocate for the browser to pass a "bucket_id" - defined locally at the user level - in the request sent to the gatekeeper. The advertiser could use the "buckets" in order do define AB test populations and take population split into account in the models sent to the gatekeepers. Each user would be assigned for a certain time in one of the N buckets. The number  _N_  of different buckets and the frequency  _f_  at which the buckets would be known in advance by the advertiser, but remain to be defined.

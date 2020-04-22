@@ -195,8 +195,4 @@ This independence could be ensured by a legally binding agreement and appropriat
 
 Gatekeepers provide a service to advertisers, running their models to compute bids, and should be paid by advertisers. Answering bid requests is very hardware intensive but is rather straightforward in term of software. Cloud providers should, therefore, be interested in the opportunity. SSP’s could also try to provide this service, independently from their existing services. There could be multiple Gatekeepers.
 
-*Basile Leparmentier*
-
-*Lionel Basdevant*
-
-*Paul Marcilhacy*
+*Basile Leparmentier*, *Lionel Basdevant*, *Paul Marcilhacy*

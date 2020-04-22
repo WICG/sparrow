@@ -177,6 +177,10 @@ As in TURTLEDOVE, advertisers do not take part in interest-based auctions and ad
 
 The Gatekeeper receives interests group x publisher data, but cannot link this data to individual users as it has no knowledge of users.
 
+# Reporting considerations
+
+We believe that the reporting mechanism exposed in this proposal would both fit the advertisers and publishers needs, and guarantee user privacy. It could, therefore, replace, in a simpler and more efficient way, other reporting mechanisms proposed in Google Privacy Sandbox.
+
 # Regarding the Gatekeeper
 
   
@@ -191,6 +195,3 @@ This independence could be ensured by a legally binding agreement and appropriat
 
 Gatekeepers provide a service to advertisers, running their models to compute bids, and should be paid by advertisers. Answering bid requests is very hardware intensive but is rather straightforward in term of software. Cloud providers should, therefore, be interested in the opportunity. SSP’s could also try to provide this service, independently from their existing services. There could be multiple Gatekeepers.
 
-# Reporting considerations
-
-We believe that the reporting mechanism exposed in this proposal would both fit the advertisers and publishers needs, and guarantee user privacy. It could, therefore, replace, in a simpler and more efficient way, other reporting mechanisms proposed in Google Privacy Sandbox.

@@ -41,7 +41,7 @@ As such, it seems that TURTLEDOVE focuses mainly on retargeting ("reminder ads")
 -   It should be possible to create new interest groups by combining existing, single-domain interest groups (via union intersection, NOT operations). This would still give the same privacy protection for users whilst allowing for important advertising use cases to be supported, and provide a flexible framework to create complex but aggregated audience. These "shared interest groups" could be used for lookalike targeting, relevant targeting and retargeting for very small actors.
     
 
-A separate page on interest groups mechanism in TURTLEDOVE and SPARROW has been written and can be found here (to be added).
+A separate page on interest groups mechanism in TURTLEDOVE and SPARROW has been written and can be found [here](https://github.com/BasileLeparmentier/SPARROW/blob/master/interest_groups_proposal.md).
 
 ## Control and transparency
 

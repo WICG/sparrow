@@ -32,17 +32,16 @@ We believe that these objectives are key to a healthy ecosystem, ensuring value 
 
 ## Advertising beyond re-marketing:
 
-As such, TURTLEDOVE focuses only on remarketing in its most basic concept ("reminder ads"). Many adjacent use cases (Similar/Look-Alike & Commerce Audiences, Comarketing) will be de facto prevented by TURTLEDOVE. However, relaxing a few restrictions can unlock these use cases with no impact on the user privacy protection features of the original proposition.
+As such, it seems that TURTLEDOVE focuses mainly on retargeting ("reminder ads"). Many adjacent use cases (Similar/Look-Alike & Commerce Audiences, Comarketing) will be challenging within TURTLEDOVE framework. However, relaxing a few restrictions can unlock these use cases with no impact on the user privacy protection features of the original proposition.
 
 -   Interest groups defined on a given advertiser should be usable for advertising redirecting outside of the original advertiser domain:
     
     -   E.g. an interest group defined on [WeReallyLikeShoes.com](http://wereallylikeshoes.com/) should be available to do branding for <shoebrand> (and thus redirecting to shoebrand.com), with [WeReallyLikeShoes.com](http://wereallylikeshoes.com/) blessing.
         
--   It should be possible to create new interest groups by combining existing, single-domain interest groups (via union intersection, NOT operations). These "shared interest groups" should be used for lookalike targeting, relevant targeting and re-marketing for very small actors. These groups should be used only if a minimum threshold of users is reached, as for standard interest groups. This would still give the same privacy protection for users whilst allowing for important advertising use cases to be supported, and provide a flexible framework to create complex but aggregated audience. The idea is to combine multiple retailers interest groups to add the user to an interest group targeted for <shoebrand>.
+-   It should be possible to create new interest groups by combining existing, single-domain interest groups (via union intersection, NOT operations). This would still give the same privacy protection for users whilst allowing for important advertising use cases to be supported, and provide a flexible framework to create complex but aggregated audience. These "shared interest groups" could be used for lookalike targeting, relevant targeting and retargeting for very small actors.
     
-    -   The advertiser is in charge of adding users to simple interest groups, but the browser is in charge of adding users to these shared interest groups using the formula provided by the advertiser.
-        
-    -   In order to avoid any leak, accessing information about these groups, even on the advertiser domain, should be limited. It is possible to add the user to such interest groups, but not possible to have any information on the user belonging to any of such groups (as it would allow creating groups based on cross-domain information).
+
+A separate page on interest groups mechanism in TURTLEDOVE and SPARROW has been written and can be found here (to be added).
 
 ## Control and transparency
 

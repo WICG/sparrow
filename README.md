@@ -1,6 +1,6 @@
 # SPARROW
 SPARROW, Secure Private Advertising Remotely Run On Webserver, is an enhancement of TURTLEDOVE proposal aiming at providing more value for the ad ecosystem, more control and transparency, and safeguarding the user experience, whilst keeping all the privacy guarantees.
-
+SPARROW also provides the opportunity to extend advertising use cases coverage.
 
 ## Motivation
 
@@ -16,8 +16,7 @@ SPARROW keeps TURTLEDOVE objectives, i.e:
 While adding the following ones:
 
 -   Advertisers can retain **campaign control and performance** in so far as this does not infringe user privacy.
--   All advertising use cases are covered by the proposition, not only re-marketing.
--   Appropriate **control** over ad safety, brand safety and  **transparency**  in billing are provided to both advertisers and publishers.
+-   Appropriate **control** over ad safety, brand safety and  **transparency**  in billing is provided to both advertisers and publishers.
 -   **User experience**  while browsing the web is preserved.
 
 We believe that these objectives are key to a healthy ecosystem, ensuring value for advertisers and revenue for publishers. In more details, the SPARROW proposal supplements TURTLEDOVE on the following items:
@@ -25,14 +24,14 @@ We believe that these objectives are key to a healthy ecosystem, ensuring value 
 ## Campaign control and Performance for Advertisers
 
 -   **budget management**: ability to start / stop / increase / decrease the spend on a campaign with low latency. Common advertiser use cases include campaign management at an hourly and currency unit granularity.
--   **Attribution**: possibility to use and own the attribution method that serves their needs best.
+-   **Attribution**: ability to define the attribution method that serves their needs best.
 -   **Performance**: ability to measure and optimise for advertising KPIs such as ROAS, click-through rates, conversion rates, cost per action, etc...
--   **AB testing**: performance measurement through fair and uncompromising methodologies.
--   **Fraud prevention**: ability to detect and blacklist suspicious supply (fraud is often very specific to a publisher, localized in time, and come with specific patterns.)
+-   **AB testing**: ability to measure performance, such as marketing lift.
+-   **Fraud prevention**: ability to detect and blacklist suspicious supply (fraud is often very specific to a publisher, localized in time, and comes with specific patterns.)
 
 ## Advertising beyond re-marketing:
 
-As such, it seems that TURTLEDOVE focuses mainly on retargeting ("reminder ads"). Many adjacent use cases (Similar/Look-Alike & Commerce Audiences, Comarketing) will be challenging within TURTLEDOVE framework. However, relaxing a few restrictions can unlock these use cases with no impact on the user privacy protection features of the original proposition.
+As such, it seems that TURTLEDOVE focuses mainly on re-targeting ("reminder ads"). Many adjacent use cases (Similar/Look-Alike & Commerce Audiences, Co-marketing) will be challenging within TURTLEDOVE framework. However, adding a few features can bring us closer to cover these use cases with no impact on user privacy.
 
 -   Interest groups defined on a given advertiser should be usable for advertising redirecting outside of the original advertiser domain:
     
@@ -45,10 +44,10 @@ A separate page on interest groups mechanism in TURTLEDOVE and SPARROW has been 
 
 ## Control and transparency
 
--   Ad safety for publishers: it is the ability for a publisher to enforce a policy on the type of ads that can be displayed on its properties. E.g.
+-   Ad safety for publishers: ability for a publisher to enforce a policy on the type of ads that can be displayed on its properties. E.g.
     -   "I don't want ads about tobacco, alcohol or containing nudity on my properties."
     -   "As an online news company, I don't want ads for other newspapers on my properties."
--   Brand safety for advertisers: it is the ability to select websites on which to publish. E.g.
+-   Brand safety for advertisers: ability for an advertiser to enforce a policy regarding websites its ads are displayed on. E.g.
     -   "As a luxury company, I don't want my ads to be displayed on sports websites."
     -   "As an airline company, I don't want my ads to be displayed on news pages related to airline accidents."
 -   Transparency and trust in billing data, which must be auditable and produced by an accountable party.

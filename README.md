@@ -17,6 +17,7 @@ While adding the following ones:
 
 -   Advertisers can retain **campaign control and performance** in so far as this does not infringe user privacy.
 -   Appropriate **control** over ad safety, brand safety and  **transparency**  in billing is provided to both advertisers and publishers.
+-   SPARROW brings a better support to more advertising use cases, not only retargeting.
 -   **User experience**  while browsing the web is preserved.
 
 We believe that these objectives are key to a healthy ecosystem, ensuring value for advertisers and revenue for publishers. In more details, the SPARROW proposal supplements TURTLEDOVE on the following items:

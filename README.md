@@ -37,7 +37,7 @@ As such, it seems that TURTLEDOVE focuses mainly on re-targeting ("reminder ads"
     
     -   E.g. an interest group defined on [WeReallyLikeShoes.com](http://wereallylikeshoes.com/) should be available to do branding for <shoebrand> (and thus redirecting to shoebrand.com), with [WeReallyLikeShoes.com](http://wereallylikeshoes.com/) blessing.
         
--   It should be possible to create new interest groups by combining existing, single-domain interest groups (via union intersection, NOT operations). This would still give the same privacy protection for users whilst allowing for important advertising use cases to be supported, and provide a flexible framework to create complex but aggregated audience. These "shared interest groups" could be used for lookalike targeting, relevant targeting and retargeting for very small actors.
+-   It should be possible to create new interest groups by combining existing, single-domain interest groups (via union intersection, NOT operations). This would still give the same privacy protection for users whilst allowing for important advertising use cases to be supported, and provide a flexible framework to create complex but aggregated audiences. These "shared interest groups" could be used for lookalike targeting, relevant targeting and retargeting for very small actors.
     
 
 A separate page on interest groups mechanism in TURTLEDOVE and SPARROW has been written and can be found [here](https://github.com/BasileLeparmentier/SPARROW/blob/master/Interest_groups_audiences_new_building_blocks.md).
@@ -103,7 +103,7 @@ In order to provide advertisers with AB testing capabilities, we advocate for th
 
 ## Reporting
 
-The Gatekeeper notifies the advertiser, with a variable delay  around one minute, of the display, including the winning interest group, the ad data (campaign, product, layout), the bid value, and the publisher it was displayed on.This delay further protects the user identity from fingerprinting while keeping the ability to measure and control advertiser budgets.
+The Gatekeeper notifies the advertiser, with a variable delay  around one minute, of the display, including the winning interest group, the ad data (campaign, product, layout), the bid value, and the publisher it was displayed on. This delay further protects the user identity from fingerprinting while keeping the ability to measure and control advertiser budgets.
 
 Click reporting is provided to the advertiser via an impression ID in the landing URL, similarly to what is done today.
 
@@ -133,7 +133,7 @@ Performance:
 -   The Gatekeeper ensures that models provided by advertisers are not disclosed to third parties, whereas in-browser models could be reversed-engineered.
 -   Having reporting data at the display level, with the interest group and publisher information, allows for the advertisers to learn better ML models, providing more value, higher bidding and eventually more revenue for the publishers.
 -   Display level reporting puts attribution back in the advertiser' hands. It gives him the flexibility he needs to define his own attribution method.
--   The bucket_id received by the gatekeeper at bidding time would allow the advertisers to run simple full-fledged AB tests to measure incrementality and test any kind of improvements. Starting/Stopping/Updating an AB test would only require an instant update of the gatekeepers.
+-   The bucket_id received by the gatekeeper at bidding time would allow the advertisers to run simple full-fledged AB tests to measure incrementality and test any kind of improvements. Starting/Stopping/Updating an AB test would only require an instantaneous update by the gatekeepers.
 
 Fraud prevention:
 
@@ -180,7 +180,7 @@ The Gatekeeper receives interests group x publisher data, but cannot link this d
 
 # Reporting considerations
 
-We believe that the reporting mechanism exposed in this proposal would both fit the advertisers and publishers needs, and ensure user privacy. Therefore, it could replace, in a simpler and more efficient way, other reporting mechanisms proposed in Google Privacy Sandbox.
+We believe that the reporting mechanism exposed in this proposal would both fit the advertisers and publishers needs, and ensure user privacy. Therefore, it could replace, more simply and efficiently, other reporting mechanisms proposed in Google Privacy Sandbox.
 
 # Regarding the Gatekeeper
 

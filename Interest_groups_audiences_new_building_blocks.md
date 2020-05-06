@@ -112,12 +112,11 @@ In a world without 3rd party cookies, interest groups are the new way of definin
 
 ## [Retargeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#retargeting)
 
-For retargeting, if single-domain interest group is sometimessufficient to create audiences, meta interest groups are needed for some specific retargeting use cases.
+For retargeting, if single-domain interest group is sometimes sufficient to create audiences, meta interest groups are needed for some specific retargeting use cases.
 
 For "standard" retargeting, interest groups can be defined using available first-party data to create segmentation, e.g.  
 
 -   Visitor, when the user comes on any page  
-    
 -   Abandoned basket: added when the user adds an item to its basket but does not buy it
 -   Buyer when the user converts.
 

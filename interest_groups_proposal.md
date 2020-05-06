@@ -1,202 +1,214 @@
 
-# Interests groups in SPARROW (WIP) 
+# Interest groups: Audiences new building blocks
 
-In this page we will explain how interest groups would work within the SPARROW framework. It is very similar as in TURTLEDOVE, with some extension, notably cross domain interest groups.
+-   [Introduction](#introduction)
+-   [Interest Groups in TURTLEDOVE](#interest-groups-in-turtledove)
+-   [Extension proposal for interest groups](#extension-proposal-for-interest-groups)
+    -   [Single-domain interest groups](#single-domain-interest-groups)
+    -   [Meta Interest group](#meta-interest-group)
+-   [Motivation for the changes](#motivation-for-the-changes)
+    -   [Retargeting](#retargeting)
+    -   [Serving relevant ads or Awareness](#serving-relevant-ads-or-awareness)
+    -   [Lookalike Targeting](#lookalike-targeting)
+-   [Setting interest groups](#setting-interest-groups)
+-   [Interest group tree](#interest-group-tree)
+    -   [Motivation](#motivation)
+    -   [Without Trees](#without-trees)
+    -   [With Trees](#with-trees)
 
-Please note that all changes here could also be applied to TURTLEDOVE directly.
 
-We will also try to link different interest groups with advertising use cases. e.g:
+# Introduction
 
--   [Serving relevant ads](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#serving-relevant-ads)
--   [Lookalike Targeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#lookalike-targeting)
--   [Retargeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#retargeting)
--   [Collaborative ads](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#collaborative-ads)
+With this page, we would like to share some thinking about how interest groups mechanisms could be extended in order to better support some advertising use cases, while still preserving user privacy.
 
-  
+These are for the time being only rough ideas, and we welcome feedback from the community -advertisers, publishers, ad networks and browser vendors- to further build on these ideas.
 
-# General rules about interest groups
+In our [SPARROW](https://github.com/BasileLeparmentier/SPARROW) proposal, we expect this proposal or a similar one to be implemented, but this new proposal on interest groups could work for any cohort based mechanism.
 
-## In TURTLEDOVE
+# Interest Groups in TURTLEDOVE
 
-Interest groups are cohorts of users. They have some characteristics, stored by the browser somewhere accessible by the advertiser defining the interest group, and the user can be added to these interest groups. The Information about the user belonging to a given interest group is stored inside the user browser.
+This paragraph is a short reminder of interest groups key elements in TURTLEDOVE (link  [here](https://github.com/michaelkleber/turtledove)).
 
-#### Interest group characteristics
+Interest groups are cohorts of users managed by the browser. They have some properties stored by the browser. We expect those properties to be accessible to the owner domain by some mechanism, not currently described.
 
-In TURTLEDOVE, interest groups are defined as a group of users (cohorts) with the following parameters:
+The user can be added to these interest groups by the owner domain. The list of interest group a user has been assigned to is stored in this user's browser.
 
--   An owner domain: the domain who is allowed to add a user to the interest group (e.g. 'www.wereallylikeshoes.com')
--   A name (e.g. 'athletic-shoes')
--   A list of 'reader' domains: "The list of `reader` domains indicates the ad networks that WeReallyLikeShoes uses to run their interest-group-targeted ads".
+## Properties
 
-#### For a user added to an interest group:
+In TURTLEDOVE, interest groups are defined as a group of users (cohort) with the following properties:
 
-In TURTLEDOVE, the user can be added to an interest group for a given time, chosen by the owner.
+-   **Owner domain**: the domain who is allowed to add a user to the interest group (e.g. 'www.wereallylikeshoes.com')
+-   **Name**  (e.g. 'athletic-shoes')
+-   **List of 'reader' domains**: "The list of `reader` domains indicates the ad networks that WeReallyLikeShoes uses to run their interest-group-targeted ads".
 
-It is our understanding that when doing so, the current web page the user is browsing should be added to the IG information so that the user may understand why he was added to a specific interest group.
+## Adding a user to an interest group
 
-In TURTLEDOVE, there is no "READ" abilities, meaning that the domain owner cannot retrieve the list of a user in an IG, nor can check whether a given user is part of an IG. It is possible to remove the user from an interest group, but without knowing if the user actually belonged to this group.
+In TURTLEDOVE, an owner domain can add a user to an interest group for a given time.
 
-In an update to TURTLEDOVE, Chrome stated that an IG with owner 'www.wereallylikeshoes.com' can actually be used to target the user for another domain  (having the ad redirecting to a shoe brand for instance). It is not 100% clear if an IG should have a specific target domain or if it is let to the ad networks to decide how they are using the interest groups. In the future, we will assume that an interest group can be used to target any domain.
+It is our understanding that whenever a user gets assigned to an interest group, the browser stores the current web page the user is on and the time of the assignement. It can be later retrieved so that the user may understand when and why he was added to a specific interest group.
+
+In TURTLEDOVE, there are no "READ" abilities, meaning that the domain owner cannot retrieve the list of all users belonging to an interest group (IG), nor can check whether a given user is part of an interest group. It is possible to remove the user from an interest group, but without knowing if the user actually belonged to this group.
+
+It is our understanding that in TURTLEDOVE, an interest group with owner 'www.wereallylikeshoes.com' can actually be used to target the user for another domain  (having the ad redirecting to a shoe brand for instance). It is not 100% clear if an IG should have a specific target domain or if it is let to the ad networks to decide how they are using the interest groups. In this document, we will assume that an interest group can be used to target any domain, and will ask for clarification.
 
 An interest group can only be used if the number of users in an interest group is greater than a given threshold. This is to avoid risks of fingerprinting infringing on user privacy.
 
-## In SPARROW:
+# Extension proposal for interest groups
 
-In SPARROW, there are two types of interest groups:
+We introduce the two following interest group types:
 
--   single domain interest groups, close to those defined in TURTLEDOVE
--   Meta interest groups: A combination of interest groups using unions, intersections or exclusions.
+-   **Single domain interest groups**, close to those defined in TURTLEDOVE
+-   **Meta interest groups**, a combination of interest groups using unions, intersections or exclusions.
 
-### Single-domain interest group:
+## Single-domain interest groups
 
-#### Interest group characteristics:
+### Properties
 
-In SPARROW, an interest group is similar as in TURTLEDOVE, but the "owner" of the interest group is split in two. Interest groups are defined as follow:
+In this new proposal, an single-domain interest group is similar to a TURTLEDOVE interest group, with three additional properties:
 
--   Assigning domain: domain with the right to assign the user to an interest group (e.g. 'www.wereallylikeshoes.com'), and to change characteristics of the IG.
--   IG builders: domains with the right to use this interest group to do meta interest groups.
--   Name with interest group tree (Cf. section about Interest group tree)
--   Readers as in TURTLEDOVE.
--   Should_send_request: True or False, in order to activate/deactivate interest groups.
--   Number of users: computed by the browser, this is for the advertiser to know if the group has enough users to be called.
+-   **Owner domain**
+-   **Name**
+-   **List of reader domains**
+-   **List of builder domains**: domains with the right to use this interest group to do meta interest groups.
+-   **Should_send_request**: True or False, in order to activate/deactivate interest groups.
+-   **Number of users**: computed by the browser, this is for the advertiser to know if the group has enough users to be called.
 
-#### For a user added to an interest group:
+### Adding a user to an interest group
 
-In SPARROW, as in TURTLEDOVE, a user can be added to an interest group by the assigning domain, with a shared expiration time. The assignation is done when the user in on the assigning domain, by the domain.
+In this new proposal, as in TURTLEDOVE, a user can be added to an interest group by the owner domain, with a set expiration time. The assignation is done when the user in on the owner domain, by the domain.
 
-In SPARROW, it is even more important than in TURTLEDOVE to store the assigning domain when the user is assigned to an interest group as a user can then be assigned to meta interest groups.
+Here, it is even more important than in TURTLEDOVE to store the owner domain when the user is assigned to an interest group as a user can then be assigned to meta interest groups.
 
-Should_send_request is for cases where the interest group is not for immediate use. E.g creating an IG of user going on the website during sales period to retarget them at the next sales period.
+Should_send_request is for cases where the interest group is not for immediate use. E.g creating an IG of user going on the website during a sales period to retarget them at the next sales period. It should be possible to update interest group properties (e.g should_send_request, the list of builder domains) via a UI or API provided by the browser.
 
-In Sparrow, we ask for the assigning domains to have reading capabilities to the user interest groups they have themselves set when the user is on their domain. This is for practical reasons, as they have ways to track this via a first-party stable identity anyway. This would just avoid useless complexity in handling interest groups.
+We also ask for the owner domains to have reading capabilities to the user interest groups they have themselves set when the user is on their domain. This is for practical reasons, as they have ways to track this via a first-party stable identity anyway. This would just avoid useless complexity in handling interest groups.
 
-### Meta Interest group:
+## Meta Interest Group
 
-Meta interest group are defined by IG builders. IG builders can be two domains willing to share data, DSPs or anybody.
+Meta interest group are defined by IG builders. A typical use case for IG builders would be DSPs or Ad Networks.
 
-A meta interest group is an interest group defined by union and/or intersections of  other  interest groups. it has the following characteristics:
+A meta interest group is an interest group defined by the union and/or intersection of  other  interest groups. it has the following properties:
 
--   IG builder: the people doing the aggregation
--   Assigning domain for normal IG: the list of the assigning domain for all single domain IG used for this meta IG creation.
--   list of interest groups (single-domain or meta) used for the meta IG creation.
--   Readers as in TURTLEDOVE.
--   Should_send_request: True or False, in order to activate/deactivate interest groups.
--   Interest group formula: The formula of intersection/union of IG used to define the meta IG.
+-   **IG builder**: the company doing the aggregation
+-   **List of owner domains used in this meta IG**: the list of the owner domain for all single domains IG used for this meta IG creation.
+-   **List of interest groups**  (single-domain or meta) used for the meta IG creation.
+-   **List of readers domain**
+-   **Should_send_request:**  True or False, in order to activate/deactivate interest groups.
+-   **Interest group formula**: The formula of intersection/union of IG used to define the meta IG.
 
-In our example, let us say we want to do an awareness campaign for a shoe brand named shoebrand. We want to target all user interested in shoes. Let us consider a DSP is IG builder for both:
+For meta interest group, it should not be possible for owner domains to know if a given user belongs to it or not, even in case the user is on the owner website. This is to avoid possible fingerprinting. For these groups, the browser is in charge of adding the user to the meta interest group using information from existing groups.
 
--   [RunningShoeReviews.com](http://runningshoereviews.com/) a publisher writing articles about shoes.
--   www.wereallylikeshoes.com.
+Creation of a meta interest group can be done any time, from  a UI or API provided by the browser, and the assignation of the user is done by the browser (it does not need to be instantaneous). A meta interest group can be defined using single domain interest groups from different domains. As for single-domain interest group, the browser checks that the number of users in the newly defined interest group is above a given threshold.
 
-This shoe-brand is interested by user interested in sport shoes, whatever their origin. The DSP then creates a meta-interest group which is the union of interest groups from both [RunningShoeReviews.com](http://runningshoereviews.com/) and www.wereallylikeshoes.com. (we could also think of people really interested in sport shoes and ask for the intersection instead).
+Meta IG can be used as single domain IG for ad serving.
 
-The browser then checks if the interest groups is big enough to ensure user privacy, and if yes, allows the DSP to run ads for shoebrand.
+Should the user ask "Why am I seeing this ad?" for an ad linked to a meta IG, he should be provided with all owner domains, interest groups involved in the meta interest group creation.
 
-Note that only aggregated interest group information have been used by the DSP, and no information at all on a specific user was used aside from the browser, who is holding all interest group information.
+An illustrating chart is available below in the Motivation for the changes section.
 
-There is no read information for meta interest groups, to avoid possible fingerprinting. For these groups, it is the browser who is in charge of adding the user to the meta interest group using information from existing groups.
+# Motivation for the changes
 
-Creation of a meta interest group can be done any time, and the assignation of user is done by the browser (it does not need to be instantaneous).
+In a world without 3rd party cookies, interest groups are the new way of defining audiences. Without meta-interest groups, some advertising use cases are not supported. We will use cases taken from this document  [here](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md) to explain how to define appropriate audiences for  some of these advertising use-cases.
 
-Should the user ask for the reason for this ad, he should be provided with all assigning domain, interest groups, and those involved in the meta interest group creation.
+## [Retargeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#retargeting)
 
-## Motivation for the changes:
+For retargeting, if single-domain interest group is sometimessufficient to create audiences, meta interest groups are needed for some specific retargeting use cases.
 
-  
-
-In a cookieless world, Interest groups are the new way of defining audiences. Without meta-interest groups, some advertising use cases are not supported. We will use Facebook use cases here to explain how to define appropriate audiences for  some of these advertising use case.
-
-### [Retargeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#retargeting):
-
-Retargetting is the most straightforward use case. Interests groups can be defined using available first party data to create segmentation, e.g:
+For "standard" retargeting, interest groups can be defined using available first-party data to create segmentation, e.g.  
 
 -   Visitor, when the user comes on any page  
     
--   Abandoned basket: added when the user add an item to its basket but does not buy it
--   Buyer when the user pays.
+-   Abandoned basket: added when the user adds an item to its basket but does not buy it
+-   Buyer when the user converts.
 
-More complex / more refined interest groups are obviously possible, but retargetting is likely to be mostly handled via single-domain interest groups.
+This allow to build audiences for standard retargeting, and no meta interest group is needed.
 
-### [Collaborative ads](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#collaborative-ads)
+A current specific retargeting use case is called "re-engagement". The purpose is to target users that went once to the website but did not return in the last month. This could be easily done thanks to a meta interest group combining two interest groups:
 
-Collaborative ads are often the collaboration between a brand and big marketplace (it can also be two seller of complementary products e.g an airline and hotels). In our example let us say that shoebrand want to do ads in collaboration with www.wereallylikeshoes.com targetting users who saw any sport shoes items on [www.wereallylikeshoes.com.](http://www.wereallylikeshoes.com./) The ads would be about shoebrand and a click will redirect on an item from shoebrand sold by [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com./).
+-   An interest group indicating the user once went to the website, e.g wereallylikeshoes.com-users.
+-   An interest group indicating if the users went to [wereallylikeshoes.com](http://wereallylikeshoes.com/) in the last month e.g: [wereallylikeshoes.com](http://wereallylikeshoes.com/)-last30days
+-   Then [wereallylikeshoes.com](http://wereallylikeshoes.com/) creates a meta interest group "[wereallylikeshoes.com](http://wereallylikeshoes.com/)-moreThan30days" which is all users that are in [wereallylikeshoes.com](http://wereallylikeshoes.com/)-users but are not in [wereallylikeshoes.com](http://wereallylikeshoes.com/)-last30days. This new meta interest group is then used for targeting users.
 
-In this use case, single-domain interest groups are also sufficient. [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com./) creates an interest groups 'shoes-for-shoebrand' and add to it all users looking at sport shoes on its website.
+This example illustrates how a standard use case can be better covered in the new framework.
 
-Then shoebrand used the interest group with [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com./) to serve ads.
+## [Serving relevant ads or Awareness](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#serving-relevant-ads) 
 
-  
+Let us consider that [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com/) is a small advertiser selling shoes in the state of NY. He is interested in running an adverting campaign to get new customers. He is interested in users with the following characteristics: they are interested in shoes and they live in the state of NY.
 
-### [Serving relevant ads](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#serving-relevant-ads)
+Let us consider two websites, [RunningShoes.com](http://runningshoereviews.com/), NYlocalnewspaper.com.  [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com/) (it could be the DSP he is working with) is IG builder for both NYlocalnewspaper and [RunningShoes.com](http://runningshoereviews.com/) interest groups.
 
-Let us consider that [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com/) is a small advertiser selling shoes in the state of NY. He is interested in running an adverting campaign to get new customer. He is interested in users with the following characteristics: they are interested in shoes and they live in the state of NY.
+The following flow chart explains the workflow of the meta interest group creation.
+![Meta interest group]([[https://user-images.githubusercontent.com/64090118/81148909-754ebd80-8f7d-11ea-9343-2204d37e7133.png](https://user-images.githubusercontent.com/64090118/81148909-754ebd80-8f7d-11ea-9343-2204d37e7133.png)))
 
-Let us consider two websites, [RunningShoeReviews.com](http://runningshoereviews.com/), NYlocalnewspaper, and a DSP who is IG builder for both NYlocalnewspaper and [RunningShoeReviews.com](http://runningshoereviews.com/) interest groups.
 
-DSP will use meta interest group to define an appropriate audience for [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com/). He will indeed use both IG from [RunningShoeReviews.com](http://runningshoereviews.com/), indicating interest in shoes, and from NYlocalnewspaper, indicating that the user is likely to live in the state of NY.
+This kind of audience definition would be impossible without meta-interest groups. Note that all these operation are done without any user-level information used by anybody except the browser.
 
-The new interest group, '[wereallylikeshoes](http://www.wereallylikeshoes.com/)-audience' is going to be defined as the intersection of those two interest groups. The browser will then check if the size of the group is sufficient for targeting users. It is possible to do union of multiple interest groups indicating location, and union of multiple shoes related interest groups and then intersect these two unions to increase the size of the audience.
+As the new meta interest group is big enough (nb users > threshold) it can be used to do interest-based advertising. This example shows that the new proposal is an improvement and allows for more complex audience creation.
 
-This kind of audience definition would be impossible without meta-interest groups. Note again that all these operation are done without any user level information used by anybody except the browser.
+## [Lookalike Targeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#lookalike-targeting)
 
-### [Lookalike Targeting](https://github.com/w3c/web-advertising/blob/master/support_for_advertising_use_cases.md#lookalike-targeting)
+Defining similar audiences is often done using multiple website information, and most often includes multiple websites. One way of creating a lookalike audience would be to create a retargeting campaign, spot performing publishers and creates IG on these publishers to try to emulate a lookalike audience.
 
-Defining similar audiences is often done using multiple website information, and most often includes multiple websites. One way of creating a lookalike audience would be to create a retargeting campaign, spot performing publishers and creates IG on these publisher to create a lookalike audiences. Meta interest groups allows for complex audience creation, without risks for the user privacy.
+If meta-interest group allows for complex audience creation, lookalike is not fully covered, and further improvement to the proposal might be needed.
 
-  
+# Setting interest groups
 
-## Setting interest groups:
+When setting interest groups targeting the owner domain, the advertiser has a lot of information that can be used to help setting interest groups. He knows the users actions, and, even more important, thanks to his first-party data, he can compute the probability of buying a product, the number of users in each interest groups, etc...
 
-Setting interest groups for retargetting or co-marketing purposes is not trivial but not too complex: The advertiser has all information he needs to assign users to an interest group. He knows his action, and, even more important, thanks to his first party data, he can compute probability of buying a product, the number of users in each interest groups etc..
+For interest groups targeted at  **different domains**  than the owner domains, setting interest groups is much harder. Indeed, there is in the current proposals no other way to test whether an interest group is relevant other than to launch a campaign, and see if it performs.
 
-For meta interest groups, or any interest groups targetted at domains different from the assigning domains, setting interest group is way harder. Indeed, the only way to check an interest group is relevant is to launch a campaign, and see if it is performant.
+Today a lot of advertisers, when creating audiences look at metrics like organic sales to know if there is some relevance for the computed audience. It is also important when creating meta interest groups to gather some feedback about the size of the created interest group. Indeed, the audience size is an extremely important aspect of advertising and the browser is the sole player able to compute it.
 
-Today a lot of advertisers, when creating audiences look at metrics like organic sales to know if there is some relevance for the computed audience. It is also important when creating meta interest group to have feedback about size of the created interest group. Indeed, size of the audience is an extremely important part of advertising and the browser is the sole player able to compute it.
+This is why we ask for an extension of the aggregated measurement API to be available for all interest groups managers (owners for single domain interest groups, IG builder for meta interest groups), in order to provide them with required information to build IG. The measurement API would provide the following information:
 
-This is why we ask for the aggregating measurement API to be available for all interest groups managers. The measurement API would provide the following information:
-
--   The size of the interest group, both for single domain and meta interest groups, (potentially with some noise).
--   Standard  **organic**  advertising metrics on a targeted domain(with the appropriate noise to preserve privacy) including:
+-   The size of the interest group, both for single domain interest groups and meta interest groups, (potentially with some noise).
+-   Standard  **organic** -outside of any running campaign- advertising metrics on a targeted domain, for user in the defined IG, including:
     -   Number of visits,
     -   Number of sales,
     -   etc...
 
-Thanks to the aggregating reporting API, it will be possible to create smart audiences without any infringement on user privacy, and to cover many advertising use cases that cannot be covered with single domain interest groups. It also still allows for transparency and control via the user, who can understand why he was targeted by a specific ad.
+This should be done with the appropriate protections (noise...) to ensure proper user privacy.
 
-## Interest group tree:
+Thanks to the aggregated reporting API, it should be possible to create smart audiences without any infringement on user privacy and to cover many advertising use-cases that cannot be covered with single domain interest groups. In addition, it still gives the user the necessary transparency and control, since he has full access to why he was targeted by a specific ad.
+
+# Interest group tree
 
 This is a technical proposal to ease the scalability and clarity of interest groups. It introduces the notion of priority between interest groups, and hierarchical interest groups.
 
-##### Motivation:
+## Motivation
 
-As in TURTLEDOVE, the interest group can only be used the number of users is above a threshold. Let us consider that www.wereallylikeshoes.com  has 4 interest groups he would like to target:
+As in TURTLEDOVE, the interest group can only be used when the number  of users is above a threshold. Let us now consider the following situation:  www.wereallylikeshoes.com  has 4 interest groups he would like to target, with the following hierarchy:
 
--   two types of shoes: sport shoes and other shoes
--   Buyers and non-buyers for both of the previous groups.
+-   First, split users by the type of shoes: sport shoes and other shoes
+-   Then split them between buyers and non-buyers for both of the previous groups.
 
-Let us consider two different strategies, one with Trees and one without. Without trees, www.wereallylikeshoes.com would use 7 different interest groups
+This gives the following interest-groups tree, with the number of users in each interest group. note that the number of users at each level is the same: 3 500. Let us consider that the threshold is 1 000 users.
 
--   'Shoes' to assign user as www.wereallylikeshoes.com user.
--   'Sport-shoes' and 'other-shoes' to target users depending on the type of shoes
--   'Sport-shoes-buyer', 'Sport-shoes-non-buyer', etc.. to use the most information.
+![Interest group tree]([https://user-images.githubusercontent.com/64090118/81148900-6ff17300-8f7d-11ea-851c-1ad2f4260be5.png](https://user-images.githubusercontent.com/64090118/81148900-6ff17300-8f7d-11ea-851c-1ad2f4260be5.png))
+We consider two different strategies, one with trees and one without.
 
-  
+## Without Trees
 
-www.wereallylikeshoes.com would need all these groups as if he only kept the 4 smallest, It is possible that none reach the sufficient number of users, or only one of them. The advertiser will always want to have the finest possible interest group, but still over the number limit.
+Without trees, www.wereallylikeshoes.com would use 7 different interest groups
 
-This strategy means that even if the 4 lowest granularity interest groups are big enough to be targetted, three bids will be need for each user at least. This numbers grows with the scale of the advertiser and is likely to be unsustainable over the long run (especially if the user belong to both 'Sport-shoes-non-buyer' and 'other-shoes-buyer' for instance) .
+-   'shoes' to assign users as www.wereallylikeshoes.com users. With 3 500 users, this group is valid.
+-   'sports-shoes' and 'other-shoes' to target users depending on the type of shoes they saw on the website. Both have more users than the threshold, so both can be used.
+-   'sports-shoes-buyer', 'sports-shoes-non-buyer', etc. to use the most information. here, only other-shoes-non-buyer is big enough to be eligible.
 
-#### Interest group tree specification:
+www.wereallylikeshoes.com would need to use all these groups. Indeed, if he were to keep only the 4 most granular groups, he would be able to target only a third of his audience: other-shoes-non-buyers (1 200 users out of 3 500).
 
-With the interest group as tree, the user would be added to the appropriate interest group, and the tree structure is sent to the browser. The browser will then only send request for the most specific interest group with enough user to protect user privacy.
+If  www.wereallylikeshoes.com were to keep only the top one, he would be able to retarget all his user base, but without the granularity and thus with degraded performance. The best strategy thus would be to add the all interest-groups from all three level for each user, to be as granular as possible on one hand, and to be able to target as many users as possible on the other.
 
-In our example, let us consider that 'Sport-shoes-buyer' and 'Sport-shoes-non-buyer', have enough user to be used, and that only 'other-shoes' is big enough (therefore 'other-shoes-buyer' and 'other-shoes-non-buyer' are too small).
+This strategy means that even if the 4 high-granularity interest-groups are big enough to be targeted, three bids at least would be needed for each user. This number grows with the scale of the advertiser and is likely to be unsustainable in the long run (especially if the user belongs to both 'sports-shoes-non-buyer' and 'other-shoes-buyer').
 
-A user would be added only to the most specific group (e.g 'other-shoes-buyer' or 'Sport-shoes-buyer'). When a request is send, it would work as follow:
+## With Trees
 
--   If the user belongs to 'Sport-shoes-buyer' he would only get requests for the 'Sport-shoes-buyer' interest group
--   If the user belongs to 'other-shoes-buyer', he would get a request for 'other-shoes' only, as 'other-shoes-buyer' is too small.
--   If the 'other-shoes-buyer' becomes big enough for a request to be sent, but 'other-shoes-non-buyer' is still not, the browser would send two requests, one for 'other-shoes-buyer' and one for 'other-shoes', in order to protect user privacy.
--   As soon as interest groups are big enough, the browser will send requests for the right interest groups.
+With this notion of an interest-groups tree, the user would be added to the appropriate interest group, and the tree structure is sent to the browser. The browser will then only ask for a bundle and java-script bidding function (or in SPARROW, send a bid request) for the most specific interest group with enough user to protect user privacy.
 
-Interest group tree therefore allow for more scalability, more transparency for the user (if the user sees 1 000 interest groups instead of only one, it will be though for him to understand what is going on).
+In our example, the requests would work as follow:
+
+-   If the user is either in sports-shoes-buyer or sports-shoes-non-buyer IG, the browser will send a request for sports-shoes, as it is the first level of interest group with the required number of users.
+-   If the user is in other-shoes-buyer IG, the browser will send requests for other-shoes IG as the interest group is not big enough yet.
+-   If the user is in other-shoes-non-buyer, the browser will send two requests for two interest groups, other-shoes-non-buyer and other-shoes, that will be answered separately. This avoids giving information (by differential reasoning) about the user being in other-shoes-buyer if there is only other-shoes IG. As soon as other-shoes-buyer is big enough, both IG will receive only one request.
+
+Therefore, Interest-groups trees allow for more scalability, more transparency for the user (The growing number of interest-groups the user can see he was assigned to would just confuse and overwhelm the user).

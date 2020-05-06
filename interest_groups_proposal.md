@@ -138,7 +138,8 @@ Let us consider that [www.wereallylikeshoes.com](http://www.wereallylikeshoes.co
 Let us consider two websites, [RunningShoes.com](http://runningshoereviews.com/), NYlocalnewspaper.com.  [www.wereallylikeshoes.com](http://www.wereallylikeshoes.com/) (it could be the DSP he is working with) is IG builder for both NYlocalnewspaper and [RunningShoes.com](http://runningshoereviews.com/) interest groups.
 
 The following flow chart explains the workflow of the meta interest group creation.
-![Meta interest group]([[https://user-images.githubusercontent.com/64090118/81148909-754ebd80-8f7d-11ea-9343-2204d37e7133.png](https://user-images.githubusercontent.com/64090118/81148909-754ebd80-8f7d-11ea-9343-2204d37e7133.png)))
+
+![Meta interest group](https://user-images.githubusercontent.com/64090118/81148909-754ebd80-8f7d-11ea-9343-2204d37e7133.png)
 
 
 This kind of audience definition would be impossible without meta-interest groups. Note that all these operation are done without any user-level information used by anybody except the browser.
@@ -184,7 +185,8 @@ As in TURTLEDOVE, the interest group can only be used when the number  of users 
 
 This gives the following interest-groups tree, with the number of users in each interest group. note that the number of users at each level is the same: 3 500. Let us consider that the threshold is 1 000 users.
 
-![Interest group tree]([https://user-images.githubusercontent.com/64090118/81148900-6ff17300-8f7d-11ea-851c-1ad2f4260be5.png](https://user-images.githubusercontent.com/64090118/81148900-6ff17300-8f7d-11ea-851c-1ad2f4260be5.png))
+![Interest group tree](https://user-images.githubusercontent.com/64090118/81148900-6ff17300-8f7d-11ea-851c-1ad2f4260be5.png)
+
 We consider two different strategies, one with trees and one without.
 
 ## Without Trees

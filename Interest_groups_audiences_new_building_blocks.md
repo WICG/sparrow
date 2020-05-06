@@ -64,7 +64,7 @@ We introduce the two following interest group types:
 
 ### Properties
 
-In this new proposal, an single-domain interest group is similar to a TURTLEDOVE interest group, with three additional properties:
+In this new proposal, a single-domain interest group is similar to a TURTLEDOVE interest group, with three additional properties:
 
 -   **Owner domain**
 -   **Name**
@@ -120,7 +120,7 @@ For "standard" retargeting, interest groups can be defined using available first
 -   Abandoned basket: added when the user adds an item to its basket but does not buy it
 -   Buyer when the user converts.
 
-This allow to build audiences for standard retargeting, and no meta interest group is needed.
+This allows to build audiences for standard retargeting, and no meta interest group is needed.
 
 A current specific retargeting use case is called "re-engagement". The purpose is to target users that went once to the website but did not return in the last month. This could be easily done thanks to a meta interest group combining two interest groups:
 
@@ -141,7 +141,7 @@ The following flow chart explains the workflow of the meta interest group creati
 ![Meta interest group](https://user-images.githubusercontent.com/64090118/81148909-754ebd80-8f7d-11ea-9343-2204d37e7133.png)
 
 
-This kind of audience definition would be impossible without meta-interest groups. Note that all these operation are done without any user-level information used by anybody except the browser.
+This kind of audience definition would be impossible without meta-interest groups. Note that all these operations are done without any user-level information used by anybody except the browser.
 
 As the new meta interest group is big enough (nb users > threshold) it can be used to do interest-based advertising. This example shows that the new proposal is an improvement and allows for more complex audience creation.
 
@@ -153,23 +153,23 @@ If meta-interest group allows for complex audience creation, lookalike is not fu
 
 # Setting interest groups
 
-When setting interest groups targeting the owner domain, the advertiser has a lot of information that can be used to help setting interest groups. He knows the users actions, and, even more important, thanks to his first-party data, he can compute the probability of buying a product, the number of users in each interest groups, etc...
+When setting interest groups targeting the owner domain, the advertiser has a lot of information that can be used to help set interest groups. He knows the users' actions, and, even more important, thanks to his first-party data, he can compute the probability of buying a product, the number of users in each interest groups, etc...
 
-For interest groups targeted at  **different domains**  than the owner domains, setting interest groups is much harder. Indeed, there is in the current proposals no other way to test whether an interest group is relevant other than to launch a campaign, and see if it performs.
+For interest groups targeted at  **different domains**  than the owner domains, setting interest groups is much harder. Indeed, there is in the current proposals no other way to test whether an interest group is relevant other than to launch a campaign and see if it performs.
 
 Today a lot of advertisers, when creating audiences look at metrics like organic sales to know if there is some relevance for the computed audience. It is also important when creating meta interest groups to gather some feedback about the size of the created interest group. Indeed, the audience size is an extremely important aspect of advertising and the browser is the sole player able to compute it.
 
-This is why we ask for an extension of the aggregated measurement API to be available for all interest groups managers (owners for single domain interest groups, IG builder for meta interest groups), in order to provide them with required information to build IG. The measurement API would provide the following information:
+This is why we ask for an extension of the aggregated measurement API to be available for all interest groups managers (owners for single domain interest groups, IG builder for meta interest groups), to provide them with the required information to build IG. The measurement API would provide the following information:
 
 -   The size of the interest group, both for single domain interest groups and meta interest groups, (potentially with some noise).
--   Standard  **organic** -outside of any running campaign- advertising metrics on a targeted domain, for user in the defined IG, including:
+-   Standard  **organic** -outside of any running campaign- advertising metrics on a targeted domain, for users in the defined IG, including:
     -   Number of visits,
     -   Number of sales,
     -   etc...
 
 This should be done with the appropriate protections (noise...) to ensure proper user privacy.
 
-Thanks to the aggregated reporting API, it should be possible to create smart audiences without any infringement on user privacy and to cover many advertising use-cases that cannot be covered with single domain interest groups. In addition, it still gives the user the necessary transparency and control, since he has full access to why he was targeted by a specific ad.
+Thanks to the aggregated reporting API, it should be possible to create smart audiences without any infringement on user privacy and to cover many advertising use-cases that cannot be covered with single domain interest groups. Besides, it still gives the user the necessary transparency and control, since he has full access to why he was targeted by a specific ad.
 
 # Interest group tree
 
@@ -208,7 +208,7 @@ With this notion of an interest-groups tree, the user would be added to the appr
 
 In our example, the requests would work as follow:
 
--   If the user is either in sports-shoes-buyer or sports-shoes-non-buyer IG, the browser will send a request for sports-shoes, as it is the first level of interest group with the required number of users.
+-   If the user is either in sports-shoes-buyer or sports-shoes-non-buyer IG, the browser will send a request for sports-shoes, as it is the first level of interest groups with the required number of users.
 -   If the user is in other-shoes-buyer IG, the browser will send requests for other-shoes IG as the interest group is not big enough yet.
 -   If the user is in other-shoes-non-buyer, the browser will send two requests for two interest groups, other-shoes-non-buyer and other-shoes, that will be answered separately. This avoids giving information (by differential reasoning) about the user being in other-shoes-buyer if there is only other-shoes IG. As soon as other-shoes-buyer is big enough, both IG will receive only one request.
 

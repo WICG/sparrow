@@ -1,5 +1,5 @@
 
-# Interest groups: Audiences new building blocks
+# Interest groups: audiences new building blocks
 
 -   [Introduction](#introduction)
 -   [Interest Groups in TURTLEDOVE](#interest-groups-in-turtledove)

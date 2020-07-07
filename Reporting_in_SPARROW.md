@@ -1,5 +1,3 @@
-
-
 # Reporting in SPARROW
 Relevant Internet advertising is an important component in striking a balance between providing a good end user experience and allowing publishers and content creators to receive adequate compensation for the content they provide. Hence, the conjunction of user interests (as it is captured by interest groups in TURTLEDOVE)  along with publisher relevance  is a key driver of the open internet advertising ecosystem. Any weakness in leveraging both signals together would undoubtedly hurt both the publisher's revenue and the user experience, exposing them to irrelevant advertisements or worse, unsafe content.
 
@@ -7,7 +5,7 @@ Furthermore, advertisers want to ensure that their products are only appearing o
 
 This is why any proposal that does not allow joint use, and reporting of, publisher information along with the interest group is, by design, flawed and will lead to extremely limited adoption from the user, advertiser and publisher.
 
-  
+
 
 This objective behind this proposal is to prevent any possible association between end user PII - some being available on publisher side - and interest groups, whilst providing the best possible support for the variety of reporting use cases as described below,  in order to preserve the most essential parts of the ad business
 
@@ -31,8 +29,8 @@ In a nutshell, to handle the different use cases, we propose to rely on a combin
 -   A  **delayed** **served ads report** for publishers. It informs about the creatives and origins of the ads such that the publisher can check if the served ads comply with its ads policy (i.e. publisher Ad Quality). The delay should be discussed with the main stakeholders (publisher and  industry experts on security and ad safety), in order to find the right balance between user safety and user privacy. To support privacy constraints, a sampling mechanism  could be used.
 -   A  **delayed ranked privacy-preserving granular report based on k-anonymity**:
     -   This report is granular, meaning one row per display.
-    -   A granular report with intentionally noisy prices and k-anonymity on variables shared by advertiser and publisher (information about the interest group is never available to the publisher, even with appropriate k-anonymity).  
-        
+    -   A granular report with intentionally noisy prices and k-anonymity on variables shared by advertiser and publisher (information about the interest group is never available to the publisher, even with appropriate k-anonymity).
+
     -   A different version of this report is available for the advertiser and the publisher.
 
 ## How it relates to some common use cases that require reporting capabilities
@@ -46,7 +44,7 @@ In a nutshell, to handle the different use cases, we propose to rely on a combin
 | Campaign Performance|Real-time control of bid levels and campaign parameters to allow for performance optimization. <br> Need as much granularity as possible to avoid bad incentive caused by asymmetric information. | - Interest Group, Creative ID, ABTest ID <br> -   Impressions, (Landed) Clicks, Visits <br> -   CTR, Non-Bounced Rate, Viewability <br> -   Cost|Aggregated report for overall level <br> ranked k-anonymous granular report for optimization.| |
 | Same UserAgent, same device Attribution / Conversion Measurement|Measure and report (a few hours later) the number of ad actions (display, view, click, ...) that lead to a conversion (visit, sale, ...) on the same user agent and device.  | -   Ad action (display, view, click) <br> -   Conversion (visit, sale, ...) on the same user agent and device.|The ranked k-anonymous granular report offers display id and the click id to the advertiser (and not for the publisher) allowing further attribution to be done in a second step.| |
 | X-user agent and/or X-device Attribution / Conversion measurement|Measure and report (a few hours later) the number of ad actions (display, view, click, ...) that lead to a conversion (visit, sale, ...) anywhere. | -   Ad action (display, view, click). <br> -   Conversion (visit, sale, ...) anywhere.|Not supported. <br> Gatekeepers don't have access to any x-device or x-user-agent PII.| |
-| Brand Lift Measurement|Measure and report (a few hours later) the difference of behavior between exposed users and non-exposed user. <br> Need very little noise in the reporting as observed effect are already often very noisy.  | Conversion lift through **incrementality** (#conversions happened due to campaign). - Creative Id <br> - Interest group Id <br> - ABTest Id <br>- Conversions|The ranked k-anonymous granular report allows for measuring the performance on users we have done an ad for.| |
+| Conversion Lift Measurement|Measure and report (a few hours later) the difference of behavior between exposed users and non-exposed user. <br> Need very little noise in the reporting as observed effect are already often very noisy.  | Conversion lift through **incrementality** (#conversions happened due to campaign). - Creative Id <br> - Interest group Id <br> - ABTest Id <br>- Conversions|The ranked k-anonymous granular report allows for measuring the performance on users we have done an ad for.| |
 | Ex post Brand Safety|Ability to audit that served ads / publishers did indeed respect the guidelines. <br> Real-time reports with full granularity are currently used for this and any solution should be as close to it as possible.| - Contextual information <br> - Interest Group <br> - Bid price (FPA), Price paid (SPA), with noise.|Ranked k-anonymous granular report + Aggregated report.| |
 | Billing|Ability to get ads placement location, data and time, and prices to be used later for publisher and advertiser billing. <br> Need a report with as exact as possible information on billing between all stakeholders. <br> It would be best if two sources of this report were available to handle potential litigation.   |  - Publisher domain <br> -  Interest Groups/campaignId <br> - day/time <br> - Budget spent/avg. Price|Aggregated report. <br> An especially low noise / noiseless aggregated report could be provided daily for the specific billing purposes. <br> Note that an exact report might be a breach of user privacy, but of low magnitude, hence the discussion on the amount of noise included in a billing report. <br> SPARROW enables two parties, one on Publisher side and one on Advertiser side, to generate that same report, thus enabling cross-data comparison and disputes resolution.| |
 
@@ -221,36 +219,36 @@ For similar reasons, a lot of categorical features are put to "Hidden", but here
 
 While K-anonymity is not foolproof for privacy, it is a fairly common standard; however, we should be aware of several possible attacks that could risk lowering the level of privacy.
 
-First, with the proposed reporting scheme, it may be possible to identify some user, or at least lower the effective 'k', by joining the publisher logs with several partners reports.  
+First, with the proposed reporting scheme, it may be possible to identify some user, or at least lower the effective 'k', by joining the publisher logs with several partners reports.
 This would be made possible by the fact that each actor can ask for a different set of reported variables: Each report provides some constraints on the possible assignations between the publisher side uid and the displays, and in some edge cases there could be enough constraints to fully identify a user.
 
-Here is the simplest example of such an attack.  
-Let's assume that k = 2, and that there are exactly 4 displays in the reporting period, distributed as follow;  
-User 1 Display 1 Domain D1 Size S1 Partner A Interest group A1  
-User 2 Display 2 Domain D1 Size S2 Partner A Interest group A2  
-User 3 Display 3 Domain D2 Size S1 Partner B Interest group B1  
+Here is the simplest example of such an attack.
+Let's assume that k = 2, and that there are exactly 4 displays in the reporting period, distributed as follow;
+User 1 Display 1 Domain D1 Size S1 Partner A Interest group A1
+User 2 Display 2 Domain D1 Size S2 Partner A Interest group A2
+User 3 Display 3 Domain D2 Size S1 Partner B Interest group B1
 User 4 Display 4 Domain D2 Size S2 Partner B Interest group B2
 
-Partner A asks for the report on domain, and partner B for the report on size.  
-Those two reports are as follow:  
-Report A  
-Domain D1 partner A interest group A1  
+Partner A asks for the report on domain, and partner B for the report on size.
+Those two reports are as follow:
+Report A
+Domain D1 partner A interest group A1
 Domain D1 partner A interest group A2
 
-Report B  
-Subdomain D2 size S1 partner B interest group B1  
+Report B
+Subdomain D2 size S1 partner B interest group B1
 Subdomain D2 size S2 partner B interest group B2
 
-On top of that, the publisher is able to collect the following log:  
-User 1 Display 1 Domain D1 Size S1  
-User 2 Display 2 Domain D1 Size S2  
-User 3 Display 3 Domain D2 Size S1  
+On top of that, the publisher is able to collect the following log:
+User 1 Display 1 Domain D1 Size S1
+User 2 Display 2 Domain D1 Size S2
+User 3 Display 3 Domain D2 Size S1
 User 4 Display 4 Domain D2 Size S2
 
-We learn from partner A report that it made the 2 displays on domain D1. We can, therefore, deduce from publisher data that the two displays of partner B are on domain D2.  
+We learn from partner A report that it made the 2 displays on domain D1. We can, therefore, deduce from publisher data that the two displays of partner B are on domain D2.
 Crossing this information with the report of partner B, we know that the display with 'size =S1' on partner B report is a display for user 3, and retrieve its interest group.
 
-  
+
 
 While this kind of attack seems quite impractical to build and requires a collusion between the publisher and some advertisers and  **a specific ad distribution (not controlled by advertiser / publisher)**, it could be mitigated by randomly removing and / or duplicating some lines from the reports. We think, however, that this is an unnecessary overhead as the effort required to just identify any given user is significantly higher than the potential value gained by such attacks.
 
@@ -260,11 +258,11 @@ But it is worth noting that all those attacks are only made possible by comparin
 
 Please also note that only one report is available per IG and domain. This means that for the collusion to work (assuming the user distribution allows it, which seems unlikely), all publisher would need to collude exactly the same way with all advertisers for it to be valuable at scale.
 
-  
+
 Therefore, even if we think that the actual privacy risks are low, we propose that access to the reports be conditioned to a legally binding agreement that those two sources of data are never crossed.
 
-_Basile Leparmentier_  [b.leparmentier@criteo.com](mailto:b.leparmentier@criteo.com)  
-_Paul Marcilhacy_  [p.marcilhacy@criteo.com](mailto:p.marcilhacy@criteo.com)  
-_Jeremy Morvan_  [j.morvan@criteo.com](mailto:j.morvan@criteo.com)  
-_Alexandre Gilotte_  [a.gilotte@criteo.com](mailto:a.gilotte@criteo.com)  
-_Amin Mantrach_  [a.mantrach@criteo.com](mailto:a.mantrach@criteo.com)  
+_Basile Leparmentier_  [b.leparmentier@criteo.com](mailto:b.leparmentier@criteo.com)
+_Paul Marcilhacy_  [p.marcilhacy@criteo.com](mailto:p.marcilhacy@criteo.com)
+_Jeremy Morvan_  [j.morvan@criteo.com](mailto:j.morvan@criteo.com)
+_Alexandre Gilotte_  [a.gilotte@criteo.com](mailto:a.gilotte@criteo.com)
+_Amin Mantrach_  [a.mantrach@criteo.com](mailto:a.mantrach@criteo.com)

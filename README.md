@@ -49,7 +49,7 @@ A separate page on interest groups mechanism in TURTLEDOVE and SPARROW has been 
     -   "I don't want ads about tobacco, alcohol or containing nudity on my properties."
     -   "As an online news company, I don't want ads for other newspapers on my properties."
 -   Brand safety for advertisers: ability for an advertiser to enforce a policy regarding websites its ads are displayed on. E.g.
-    -   "As a luxury company, I don't want my ads to be displayed on sports websites."
+    -   "As a luxury company, I want my ads to be displayed on premium inventory: always above the fold and / or on a list of selected publishers."
     -   "As an airline company, I don't want my ads to be displayed on news pages related to airline accidents."
 -   Transparency and trust in billing data, which must be auditable and produced by an accountable party.
 

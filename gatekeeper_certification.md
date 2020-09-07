@@ -56,4 +56,4 @@ We think that this proposal is a first step to address a lot of issues raised by
 We are open to any suggestions and improvements to this proposal.
 
 ## Illustrative flow chart
-![Gatekeeper certification](https://user-images.githubusercontent.com/64090118/92242143-a4d7ed00-eebf-11ea-93d3-aac6617ec195.png)
+![Gatekeeper certification](https://user-images.githubusercontent.com/64090118/92409802-2a6acf80-f142-11ea-85b6-09388e172d34.png)

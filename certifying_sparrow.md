@@ -107,7 +107,7 @@ The auditing/certification part is trickier for reporting than the auction mecha
 
 We also want to highlight the design constraints minimizing the risk of the gatekeeper going rogue or even the gatekeeper being attacked:
 
--   The gatekeeper should not receive any PII (and reporting proposal ensure that they cannot be shared) and does not even access to the meaning of interest groups.
+-   The gatekeeper does not receive any PII and does not even access to the meaning of interest groups.
     -   This means that for the information of gatekeeper to be used for fingerprinting, or leaking information on users, not only collusion is needed, but on top of that, the publisher request must be unique so that an interest group of a user can be linked to a unique user on the publisher side.
     -   Even if this occurs, it is not sufficient to tie this user with the exact user on the advertiser side (as cohorts, to be active, need enough users).
 
@@ -120,11 +120,25 @@ In order to reduce the risk of leakage we are proposing the following design mit
 -   Data should be stored only for a very specific timeframe (e.g. not more than a week).
 -   Once the data has been transferred to the stakeholders, only transformed/aggregated data should be kept by the gatekeeper. That makes cheating more difficult as it means that it needs to be done before the report is sent to stakeholders, but still allows for ex-post contention resolution.
 -   Technical means should be pursued:
-    -   Encrypting the database somehow?
-        -   Any technical limitation that could trace each read of the database in order to be able to audit that it is not read for malicious purposes would be useful.
+	-   Any technical limitation that could trace each read of the database in order to be able to audit that it is not read for malicious purposes would be useful.
 -   We ask for ideas and contribution on how both technical and design limitation could be put in place to strengthen the trust model for reporting.
-    -   We know that there are some code techniques to ensure compliance, and the "generic" Gatekeeper code (i.e the code outside of DSPs/SSPs APIs) should be published so that anybody can audit it (on top of the certification entity).
-    -   There are many design limitations that could make it easier to trust but verify the gatekeeper, and we encourage people to propose sensible ways of making it possible.
+There are many design limitations that could make it easier to trust but verify the gatekeeper, and we encourage people to propose sensible ways of making it possible.
+    
+## Technical mechanisms & future improvements
+
+We are aware that there are technical means that can be used to help with trusting the gatekeeper. Two of the most discussed are:
+
+- Software guard extension: a technique that allows to ensure exactly which code is run by issuing a signing hash. It could help audit the Gatekeeper "Generic code".
+ 
+- Multi party computation were one need only to trust one of the helper server to be confident that the system is protected.
+
+We think both avenues should be pursued, however, we are under the impression that the two technologies are not mature enough to be used for Gatekeepers as of today.
+Indeed, setting up those trusted servers would already be quite hard, and infrastructure cost are already huge issue in the online advertising industry. Introducing two un mature technology into a revolution of huge scale for the industry would be to combine two revolution into one.
+We are proposing a pragmatic two step revolutions. Let us set up Gatekeepers as "standard" server side components, whose trustworthiness will be defined using audit and rules that have been relied upon  in many industries / over many years.
+
+We should also try as much as possible to help technologies like multi server computation / SGX mature, and should the audit model fail, or should the browser want even more robust guarantees, we may then updates the gatekeepers towards these new technologies to further ensure that servers can be trusted.
+
+Certified Gatekeeper may be only a temporary solutions (and become permanent should they prove effective) to both allow for the open web continued monetization and to protect user's privacy, until a better solution is found.
 
 ## Business model & sanctions:
 
